@@ -1,0 +1,24 @@
+/* Handwritten display font (Caveat) + readable body font (Nunito).
+   Both are bundled with the app so the private page makes no font requests to
+   third-party hosts. */
+
+@font-face {
+  font-family: 'Caveat';
+  font-style: normal;
+  font-weight: 500 700;
+  font-display: swap;
+  src: url('../assets/fonts/caveat-latin.woff2')
+    format('woff2');
+  /* Range covers basic Latin used in the copy. */
+  unicode-range: U+0000-00FF, U+0152-0153, U+02BB-02BC, U+2000-206F, U+2074,
+    U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+  font-family: 'Nunito';
+  font-style: normal;
+  font-weight: 400 800;
+  font-display: swap;
+  src: url('../assets/fonts/nunito-latin.woff2')
+    format('woff2');
+}

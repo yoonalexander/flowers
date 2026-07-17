@@ -1,0 +1,57 @@
+.bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  background-color: var(--c-pink);
+  transition: filter 1.2s ease, opacity 1.2s ease;
+}
+
+/* Pastel-yellow polka dots, fixed to the viewport so they don't scroll. */
+.bg__dots {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+    var(--c-yellow) 0,
+    var(--c-yellow) 2.5px,
+    transparent 3px
+  );
+  background-size: 46px 46px;
+  background-position: 0 0;
+  opacity: 0.55;
+}
+
+/* Faint paper grain via layered tiny radial gradients. */
+.bg__grain {
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(
+      rgba(255, 255, 255, 0.5) 0.5px,
+      transparent 0.6px
+    ),
+    radial-gradient(rgba(120, 80, 95, 0.06) 0.5px, transparent 0.6px);
+  background-size: 5px 5px, 7px 7px;
+  background-position: 0 0, 2px 3px;
+  opacity: 0.6;
+  mix-blend-mode: overlay;
+}
+
+/* Soft warm highlight in the centre, gentle shadow at the edges. */
+.bg__vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    ellipse at 50% 38%,
+    rgba(255, 255, 255, 0.55) 0%,
+    rgba(255, 247, 236, 0) 45%,
+    rgba(190, 140, 160, 0.18) 100%
+  );
+}
+
+/* During the final reveal the background softens so the bouquet stands out. */
+.bg--dimmed {
+  filter: saturate(0.82) brightness(0.97);
+}
+
+.bg--dimmed .bg__dots {
+  opacity: 0.32;
+}
