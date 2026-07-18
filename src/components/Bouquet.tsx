@@ -4,8 +4,8 @@ import './Bouquet.css';
 
 /**
  * The illustrated bouquet: wrapping paper cone, ribbon, stems, leaves, and
- * small filler flowers as static decoration, with the interactive message
- * flowers layered on top. Overall brightness/warmth rises as more flowers bloom
+ * interactive message flowers layered on top. Overall brightness/warmth rises
+ * as more flowers bloom
  * (`progress`) and reaches a celebratory glow when `completed`.
  *
  * SVG viewBox is 0 0 100 130 — wide enough for the flower dome, tall enough
@@ -50,7 +50,14 @@ export function Bouquet({
             <stop offset="0%" stopColor="#fdeede" />
             <stop offset="100%" stopColor="#f1b9c8" />
           </linearGradient>
-          <linearGradient id="stemGrad" x1="0" y1="0" x2="0" y2="1">
+          <linearGradient
+            id="stemGrad"
+            gradientUnits="userSpaceOnUse"
+            x1="0"
+            y1="20"
+            x2="0"
+            y2="92"
+          >
             <stop offset="0%" stopColor="#a7cfa2" />
             <stop offset="100%" stopColor="#7fae7a" />
           </linearGradient>
@@ -79,17 +86,13 @@ export function Bouquet({
           className="bouquet__stems"
           aria-hidden="true"
           stroke="url(#stemGrad)"
-          strokeWidth="1.4"
+          strokeWidth="1.25"
           fill="none"
           strokeLinecap="round"
         >
-          <path d="M50 72 C 50 60, 50 52, 50 48" />
-          <path d="M50 74 C 44 66, 38 56, 34 50" />
-          <path d="M50 74 C 56 66, 62 56, 66 50" />
-          <path d="M50 74 C 41 70, 30 64, 26 60" />
-          <path d="M50 74 C 59 70, 70 64, 74 60" />
-          <path d="M50 74 C 47 68, 45 64, 44 62" />
-          <path d="M50 74 C 53 68, 55 64, 56 62" />
+          {ordered.map((flower) => (
+            <path key={flower.id} d={stemPath(flower.position.x, flower.position.y)} />
+          ))}
         </g>
 
         {/* ---- Leaves ----------------------------------------------------- */}
@@ -99,16 +102,6 @@ export function Bouquet({
           <Leaf x={38} y={68} rot={-18} scale={0.8} />
           <Leaf x={62} y={68} rot={18} scale={0.8} />
           <Leaf x={50} y={70} rot={0} scale={0.7} />
-        </g>
-
-        {/* ---- Filler (non-interactive) baby's-breath dots ---------------- */}
-        <g className="bouquet__filler" aria-hidden="true">
-          {FILLER.map(([fx, fy], i) => (
-            <g key={i} transform={`translate(${fx}, ${fy})`}>
-              <circle r="1.6" fill="#fff" opacity="0.85" />
-              <circle r="0.6" fill="#f3c969" />
-            </g>
-          ))}
         </g>
 
         {/* ---- Interactive flowers, layered ------------------------------- */}
@@ -199,16 +192,14 @@ function Leaf({
   );
 }
 
-// Coordinates of filler baby's-breath clusters scattered among the flowers.
-const FILLER: [number, number][] = [
-  [42, 28],
-  [58, 27],
-  [50, 36],
-  [30, 38],
-  [70, 38],
-  [44, 46],
-  [56, 46],
-  [50, 55],
-  [28, 52],
-  [72, 52],
-];
+/**
+ * Curve a stem from the ribbon knot to the centre of its flower. The final
+ * section sits behind the petals, making the bloom and stem meet cleanly.
+ */
+function stemPath(x: number, y: number) {
+  const spread = x - 50;
+  const lowerControlX = 50 + spread * 0.18;
+  const upperControlX = x - spread * 0.12;
+
+  return `M50 91 C ${lowerControlX} 76, ${upperControlX} ${y + 15}, ${x} ${y + 2}`;
+}

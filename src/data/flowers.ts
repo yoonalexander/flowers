@@ -89,7 +89,7 @@ export const FLOWERS: FlowerMessage[] = [
     title: 'Completely myself',
     message:
       'I have never felt as comfortable and happy around anyone as I do around you. You make it easy to just be myself.',
-    colors: { primary: '#f3c969', secondary: '#f4a6c0' },
+    colors: { primary: '#f3c969', secondary: '#f7d97a' },
     position: { x: 38, y: 50, rotation: -6, scale: 0.8, layer: 2 },
     fieldPosition: { x: 1580, y: 740, scale: 1.04 },
     swayDuration: 7.0,
@@ -121,7 +121,7 @@ export const COPY: SiteCopy = {
   },
   intro: {
     heading: 'Every flower was picked just for you.',
-    instruction: 'Together, they say what I\u2019ve been trying to tell you.',
+    instruction: '',
   },
   progress: {
     template: '{n} of {total} flowers discovered',

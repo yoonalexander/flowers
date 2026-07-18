@@ -3,7 +3,7 @@ export type Direction = 'up' | 'down' | 'left' | 'right';
 
 export const FIELD_SIZE = { width: 1920, height: 960 } as const;
 export const BUNNY_START: Point = { x: 960, y: 840 };
-export const BUNNY_SPEED = 230;
+export const BUNNY_SPEED = 320;
 export const FIELD_MARGIN = 40;
 export const PICKUP_RADIUS = 56;
 
