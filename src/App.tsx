@@ -25,6 +25,7 @@ export default function App() {
   const [experienceReady, setExperienceReady] = useState(false);
   const [openId, setOpenId] = useState<string | null>(null);
   const [response, setResponse] = useState<ProposalResponse>(null);
+  const [resetEpoch, setResetEpoch] = useState(0);
 
   const validDiscovered = new Set(
     FLOWERS.filter((flower) => discovered.has(flower.id)).map((flower) => flower.id),
@@ -63,6 +64,7 @@ export default function App() {
     setResponse(null);
     setPhase('field');
     setExperienceReady(true);
+    setResetEpoch((current) => current + 1);
     window.requestAnimationFrame(() => {
       document.querySelector<HTMLElement>('.field-viewport')?.focus();
     });
@@ -121,6 +123,7 @@ export default function App() {
       {fieldActive ? (
         <>
           <FieldExperience
+            key={resetEpoch}
             flowers={FLOWERS}
             discovered={validDiscovered}
             paused={!!openFlower}
@@ -169,17 +172,16 @@ export default function App() {
         </>
       )}
 
-      {import.meta.env.DEV && (
-        <button
-          type="button"
-          className="app__dev-reset"
-          onClick={resetExperience}
-          title="Reset the experience (dev only)"
-          aria-label="Reset the experience"
-        >
-          ↺
-        </button>
-      )}
+      <button
+        type="button"
+        className="app__reset"
+        onClick={resetExperience}
+        title="Start over and clear all flowers"
+        aria-label="Reset the experience and clear all collected flowers"
+      >
+        <span aria-hidden="true">↺</span>
+        Reset
+      </button>
 
       <div className="sr-only" role="status" aria-live="polite">
         {announcement}

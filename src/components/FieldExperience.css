@@ -148,6 +148,12 @@
   pointer-events: none;
 }
 
+@media (min-width: 900px) {
+  .field-hud {
+    padding-right: max(7.5rem, calc(env(safe-area-inset-right) + 7.5rem));
+  }
+}
+
 .field-hud__note,
 .field-progress {
   background: rgba(255, 252, 231, .9);
@@ -343,8 +349,18 @@
 @keyframes bunny-shadow { 0%,100% { transform: scaleX(1); opacity: .8; } 45% { transform: scaleX(.72); opacity: .46; } }
 @keyframes bunny-ear-idle { 0%, 88%, 100% { transform: rotate(0); } 93% { transform: rotate(5deg); } }
 
+@media (max-width: 899px) {
+  .field-hud {
+    top: max(64px, calc(env(safe-area-inset-top) + 64px));
+  }
+}
+
 @media (max-width: 700px) {
-  .field-hud { grid-template-columns: 1fr; justify-items: center; gap: .5rem; }
+  .field-hud {
+    grid-template-columns: 1fr;
+    justify-items: center;
+    gap: .5rem;
+  }
   .field-hud__note { max-width: calc(100vw - 28px); text-align: center; padding: .6rem .85rem; }
   .field-hud__note h1 { font-size: 1.48rem; }
   .field-hud__note p { font-size: .79rem; }

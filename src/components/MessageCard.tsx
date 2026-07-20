@@ -106,7 +106,7 @@ export function MessageCard({
         }
       >
         <div className="mc__icon" aria-hidden="true">
-          <svg viewBox="-26 -28 52 44" width="76" height="64">
+          <svg viewBox="-27 -27 54 54" width="76" height="76">
             <Lily colors={flower.colors} bloomed revealProgress={1} />
           </svg>
         </div>

@@ -13,7 +13,7 @@ npm run build    # TypeScript check and production build
 npm run preview  # preview the production build
 ```
 
-Open `http://localhost:5173/flowers/` for development or `http://localhost:4173/flowers/` for the production preview. If Vite chooses another port, use the URL printed in the terminal.
+Open `http://localhost:5173/bunny/` for development or `http://localhost:4173/bunny/` for the production preview. If Vite chooses another port, use the URL printed in the terminal.
 
 ## How it works
 
@@ -30,7 +30,7 @@ All copy, flowers, colours, bouquet positions, and meadow positions live in **`s
 
 ## Vercel deployment
 
-Create the flowers deployment as a **Vite** project. Vercel should detect it automatically from `package.json`.
+Create the bunny deployment as a **Vite** project. Vercel should detect it automatically from `package.json`.
 
 - Framework preset: `Vite`
 - Root directory: repository root
@@ -39,20 +39,23 @@ Create the flowers deployment as a **Vite** project. Vercel should detect it aut
 - Output directory: `dist`
 - Node.js version: a current Vite-supported LTS release
 
-`vite.config.ts` keeps `base: '/flowers/'`, so generated scripts, styles, and fonts load beneath `/flowers/assets/`. This repo's `vercel.json` maps those public asset paths to the physical Vite output before applying the SPA fallbacks.
+`vite.config.ts` keeps `base: '/bunny/'`, so generated scripts, styles, and fonts load beneath `/bunny/assets/`. This repo's `vercel.json` maps those public asset paths to the physical Vite output before applying the SPA fallbacks.
 
-The public route is owned by the separate `alexyoon.com` Vercel project. Configure that project to proxy both `/flowers` and `/flowers/:path*` to this project's stable Vercel origin, forwarding the remainder without the `/flowers` prefix:
+The public route is owned by the separate `alexyoon.com` Vercel project. Configure that project to proxy both `/bunny` and `/bunny/:path*` to this project's stable Vercel origin, forwarding the remainder without the `/bunny` prefix:
 
 ```json
 {
   "rewrites": [
-    { "source": "/flowers", "destination": "https://FLOWERS_ORIGIN/" },
     {
-      "source": "/flowers/:path*",
-      "destination": "https://FLOWERS_ORIGIN/:path*"
+      "source": "/bunny",
+      "destination": "https://flowers-eight-inky.vercel.app/"
+    },
+    {
+      "source": "/bunny/:path*",
+      "destination": "https://flowers-eight-inky.vercel.app/:path*"
     }
   ]
 }
 ```
 
-Replace `FLOWERS_ORIGIN` with this project's stable Vercel hostname. Avoid absolute asset paths such as `/image.png`; use imports or relative paths instead.
+The destination is this project's stable production hostname. Avoid absolute asset paths such as `/image.png`; use imports or relative paths instead.
