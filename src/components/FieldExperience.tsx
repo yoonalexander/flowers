@@ -137,9 +137,20 @@ export function FieldExperience({
           }}
         >
           <div className="field-world__sky" aria-hidden="true">
+            <span className="field-sky-glow" />
+            <span className="field-sun" />
             <span className="field-cloud field-cloud--one" />
             <span className="field-cloud field-cloud--two" />
-            <span className="field-sun" />
+            <span className="field-cloud field-cloud--three" />
+            <span className="field-cloud field-cloud--four" />
+            <span className="field-bird field-bird--one" />
+            <span className="field-bird field-bird--two" />
+            <div className="field-hills field-hills--far">
+              <i /><i /><i /><i />
+            </div>
+            <div className="field-hills field-hills--near">
+              <i /><i /><i /><i />
+            </div>
           </div>
           <div className="field-world__grass" aria-hidden="true" />
           <div className="field-world__path" aria-hidden="true" />
