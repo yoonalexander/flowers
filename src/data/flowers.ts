@@ -139,7 +139,7 @@ export const COPY: SiteCopy = {
     talkLabel: 'Let’s talk',
   },
   response: {
-    yes: 'You just made me very, very happy ♡',
+    yes: 'I love you so much miu ♡',
     talk: 'Of course. I care about you, and we can talk about it whenever you’re ready.',
   },
 };
